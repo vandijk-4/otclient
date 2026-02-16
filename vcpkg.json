@@ -5,8 +5,9 @@
     "boost-system",
     "boost-filesystem",
     "boost-thread",
-    "lua",
     "physfs",
-    "openal-soft"
+    "openal-soft",
+    "lua",
+    "zlib"
   ]
 }
