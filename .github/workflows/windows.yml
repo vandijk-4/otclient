@@ -9,26 +9,16 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Setup MSVC
-      uses: ilammy/msvc-dev-cmd@v1
-
-    - name: Install dependencies with vcpkg
-      run: |
-        vcpkg install boost-system:x64-windows
-        vcpkg install boost-filesystem:x64-windows
-        vcpkg install boost-thread:x64-windows
-        vcpkg install physfs:x64-windows
-        vcpkg install openal-soft:x64-windows
+    - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Configure
-      run: |
-        cmake -S . -B build `
-          -G "Visual Studio 17 2022" `
-          -A x64 `
-          -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
+      run: >
+        cmake -S . -B build
+        -G "Visual Studio 17 2022"
+        -A x64
+        -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
 
     - name: Build
       run: cmake --build build --config Release
