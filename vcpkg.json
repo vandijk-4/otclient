@@ -8,6 +8,7 @@
     "physfs",
     "openal-soft",
     "lua",
-    "zlib"
+    "zlib",
+    "gmp"
   ]
 }
