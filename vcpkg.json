@@ -2,10 +2,7 @@
   "name": "otclient",
   "version-string": "1.0.0",
   "dependencies": [
-    "boost-system",
-    "boost-filesystem",
-    "boost-thread",
-    "boost-asio",
+    "boost",
     "physfs",
     "openal-soft",
     "lua",
