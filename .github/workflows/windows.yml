@@ -15,10 +15,7 @@ jobs:
     - name: Setup MSVC
       uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Setup vcpkg
-      uses: lukka/run-vcpkg@v11
-
-    - name: Install Dependencies
+    - name: Install dependencies with vcpkg
       run: |
         vcpkg install boost-system:x64-windows
         vcpkg install boost-filesystem:x64-windows
@@ -31,7 +28,7 @@ jobs:
         cmake -S . -B build ^
           -G "Visual Studio 17 2022" ^
           -A x64 ^
-          -DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake
+          -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
 
     - name: Build
       run: cmake --build build --config Release
@@ -40,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: otclient-windows
-        path: build/Release/
+        path: build/bin/Release/
