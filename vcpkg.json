@@ -9,6 +9,10 @@
     "openal-soft",
     "lua",
     "zlib",
-    "gmp"
+    "gmp",
+    "openssl",
+    "glew",
+    "libogg",
+    "libvorbis"
   ]
 }
