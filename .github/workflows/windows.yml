@@ -9,19 +9,35 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
 
     - name: Setup MSVC
       uses: ilammy/msvc-dev-cmd@v1
 
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@v11
+
+    - name: Install Dependencies
+      run: |
+        vcpkg install boost-system:x64-windows
+        vcpkg install boost-filesystem:x64-windows
+        vcpkg install boost-thread:x64-windows
+        vcpkg install physfs:x64-windows
+        vcpkg install openal-soft:x64-windows
+
     - name: Configure
-      run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+      run: |
+        cmake -S . -B build ^
+          -G "Visual Studio 17 2022" ^
+          -A x64 ^
+          -DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake
 
     - name: Build
       run: cmake --build build --config Release
 
-    - name: Upload
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: otclient-windows
-        path: build/bin/Release/
+        path: build/Release/
