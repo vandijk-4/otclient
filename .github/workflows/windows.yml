@@ -28,7 +28,11 @@ jobs:
         cmake -S . -B build ^
           -G "Visual Studio 17 2022" ^
           -A x64 ^
-          -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
+          -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake ^
+          -DBOOST_ROOT=C:\vcpkg\installed\x64-windows ^
+          -DBoost_INCLUDE_DIR=C:\vcpkg\installed\x64-windows\include ^
+          -DBoost_LIBRARY_DIR_RELEASE=C:\vcpkg\installed\x64-windows\lib ^
+          -DBoost_LIBRARY_DIR_DEBUG=C:\vcpkg\installed\x64-windows\debug\lib
 
     - name: Build
       run: cmake --build build --config Release
