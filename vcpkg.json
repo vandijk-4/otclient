@@ -5,7 +5,6 @@
     "boost-system",
     "boost-filesystem",
     "boost-thread",
-    "boost-uuid",
     "boost-asio",
     "physfs",
     "openal-soft",
